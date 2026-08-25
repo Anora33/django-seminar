@@ -5,4 +5,3 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('seminar.urls')),
 ]
-#eni ishlasa kerak
