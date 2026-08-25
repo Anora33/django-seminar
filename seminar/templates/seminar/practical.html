@@ -1,0 +1,131 @@
+{% extends 'seminar/base.html' %}
+
+{% block title %}Amaliy topshiriqlar{% endblock %}
+
+{% block content %}
+<h1 class="text-center mb-4">
+    <i class="fas fa-tasks" style="color: #667eea;"></i>
+    Amaliy topshiriqlar
+</h1>
+<p class="text-center lead mb-4">
+    WorldSkills IT Networking standartlari asosida <strong>5 ta</strong> amaliy vazifa
+</p>
+
+<div class="row">
+    {% for task in tasks %}
+    <div class="col-md-6 mb-4">
+        <div class="card shadow h-100">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-check-circle"></i> {{ task.title }}
+                </h5>
+            </div>
+            <div class="card-body">
+                <p>{{ task.description }}</p>
+                
+                <h6 class="mt-3"><i class="fas fa-list"></i> Talablar:</h6>
+                <ul>
+                    {% for req in task.requirements %}
+                    <li>{{ req }}</li>
+                    {% endfor %}
+                </ul>
+                
+                <div class="row mt-3">
+                    <div class="col-6">
+                        <span class="badge bg-info">
+                            <i class="fas fa-tools"></i> {{ task.tools }}
+                        </span>
+                    </div>
+                    <div class="col-6 text-end">
+                        <span class="badge bg-warning">
+                            <i class="fas fa-clock"></i> {{ task.time }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-outline-primary w-100" onclick="alert('Topshiriq boshlanadi: {{ task.title }}')">
+                    <i class="fas fa-play"></i> Topshiriqni boshlash
+                </button>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Qo'shimcha ma'lumot -->
+<div class="card shadow mt-4">
+    <div class="card-body">
+        <h5><i class="fas fa-info-circle" style="color: #667eea;"></i> WorldSkills baholash mezonlari</h5>
+        <div class="row mt-3">
+            <div class="col-md-3 text-center">
+                <div class="p-3 border rounded">
+                    <h4>40%</h4>
+                    <p class="text-muted">Amaliy ko'nikmalar</p>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="p-3 border rounded">
+                    <h4>30%</h4>
+                    <p class="text-muted">Tarmoq sozlash</p>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="p-3 border rounded">
+                    <h4>20%</h4>
+                    <p class="text-muted">Xatoliklarni tuzatish</p>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="p-3 border rounded">
+                    <h4>10%</h4>
+                    <p class="text-muted">Hujjatlashtirish</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Jadvalli baholash -->
+<div class="card shadow mt-4">
+    <div class="card-body">
+        <h5><i class="fas fa-star" style="color: #FFD700;"></i> WorldSkills baholash jadvali</h5>
+        <div class="table-responsive">
+            <table class="table table-striped mt-3">
+                <thead>
+                    <tr>
+                        <th>Kriteriya</th>
+                        <th>0-5 ball</th>
+                        <th>6-10 ball</th>
+                        <th>11-15 ball</th>
+                        <th>16-20 ball</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tarmoq loyihalash</td>
+                        <td>Asosiy topologiya</td>
+                        <td>VLAN sozlash</td>
+                        <td>Marshrutlash</td>
+                        <td>To'liq yechim</td>
+                    </tr>
+                    <tr>
+                        <td>Tarmoq xavfsizligi</td>
+                        <td>ACL asoslari</td>
+                        <td>Firewall sozlash</td>
+                        <td>VPN ulanish</td>
+                        <td>Kompleks himoya</td>
+                    </tr>
+                    <tr>
+                        <td>Monitoring</td>
+                        <td>Asosiy monitoring</td>
+                        <td>Alert sozlash</td>
+                        <td>Grafikalar</td>
+                        <td>To'liq tizim</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

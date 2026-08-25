@@ -1,0 +1,42 @@
+{% extends 'seminar/base.html' %}
+
+{% block title %}Aloqa{% endblock %}
+
+{% block content %}
+<h1 class="text-center mb-4">
+    <i class="fas fa-envelope" style="color: #667eea;"></i>
+    Bog'lanish
+</h1>
+
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="card shadow">
+            <div class="card-body">
+                <h4><i class="fas fa-user"></i> Seminarni o'tkazuvchi</h4>
+                <p><strong>Sizning Ismingiz</strong></p>
+                <p><i class="fas fa-envelope"></i> sizning@email.uz</p>
+                <p><i class="fas fa-phone"></i> +998 90 123 45 67</p>
+                <p><i class="fab fa-telegram"></i> @username</p>
+
+                <hr>
+
+                <h5><i class="fas fa-question-circle"></i> Savolingiz bormi?</h5>
+                <form>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" placeholder="Ismingiz" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="email" class="form-control" placeholder="Emailingiz" required>
+                    </div>
+                    <div class="mb-3">
+                        <textarea class="form-control" rows="4" placeholder="Xabaringiz..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-korea w-100">
+                        <i class="fas fa-paper-plane"></i> Yuborish
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
