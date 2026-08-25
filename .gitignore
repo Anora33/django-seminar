@@ -1,0 +1,18 @@
+# Virtual environment
+venv/
+env/
+
+# Django
+*.log
+db.sqlite3
+staticfiles/
+__pycache__/
+
+# Python
+*.py[cod]
+*.sqlite3
+
+# IDE va maxfiy fayllar
+.idea/
+.vscode/
+*.pem
