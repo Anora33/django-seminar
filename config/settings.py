@@ -1,53 +1,20 @@
-from pathlib import Path
 import os
+from pathlib import Path
+import urllib.parse
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-...'  # O'zingizdagisi qolaversin
-
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'seminar',  # <--- Bu qator BO'LISHI SHART!
-]
+SECRET_KEY = 'django-insecure-...'  # O'zingizdagicha qolsin
+DEBUG = False
+ALLOWED_HOSTS = ['*']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # ... qolgan middleware'lar
 ]
 
-ROOT_URLCONF = 'config.urls'
-
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
-
-WSGI_APPLICATION = 'config.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.app'
 
 DATABASES = {
     'default': {
@@ -56,25 +23,17 @@ DATABASES = {
     }
 }
 
-AUTH_PASSWORD_VALIDATORS = [
-    # ... (o'zingizdagicha qolsin)
-]
+if os.environ.get("DATABASE_URL"):
+    url = urllib.parse.urlparse(os.environ["DATABASE_URL"])
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': url.path[1:],
+        'USER': url.username,
+        'PASSWORD': url.password,
+        'HOST': url.hostname,
+        'PORT': url.port,
+    }
 
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
-USE_I18N = True
-USE_TZ = True
-
-# STATIC Fayllar sozlamasi (Rasm va CSS uchun KEYINGA KERAK BO'LADI)
 STATIC_URL = 'static/'
-
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STATIC_URL = 'static/'
-
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / "static"]
